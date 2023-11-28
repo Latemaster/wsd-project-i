@@ -1,10 +1,14 @@
+<% layout("./layouts/layout.eta") %>
+
 <h1><%= it.currentList.name %></h1>
+
+<a href="/lists">Shopping Lists</a>
 
 <h2>Add items</h2>
 
 <form action="/lists/<%= it.currentList.id %>/items" method="POST">
-  Name: <input type="text" name="name" />
-  <input type="submit" value="Add item!" />
+  Name: <input type="text" name="name" id = "typeItem"/>
+  <input type="submit" value="Add item!" id = "AddItem" />
 </form>
 
 <ul>
@@ -12,7 +16,7 @@
  
    <li><%= item.name %>
    <form method="POST" action="/lists/<%= it.currentList.id %>/items/<%= item.id %>/collect">
-  <input type="submit" value="Mark collected!" />
+  <input type="submit" value="Mark collected!" id = "Collect" />
 </form>
    </li>
 <% }); %>
@@ -22,6 +26,8 @@
    </li>
 <% }); %>
 </ul>
+
+
 
 
 

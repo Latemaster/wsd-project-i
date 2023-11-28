@@ -17,4 +17,9 @@ const CollectItem = async (Listid) => {
     SET collected = true WHERE id = ${ Listid }`;
 };
 
-export { createItem, findActiveItemsByID,findCollectedItemsByID ,CollectItem };
+const findItemCount = async () => {
+    const count = await sql`SELECT COUNT(*)::integer FROM shopping_list_items`
+    return count[0].count;
+}
+
+export { createItem, findActiveItemsByID,findCollectedItemsByID ,CollectItem, findItemCount };

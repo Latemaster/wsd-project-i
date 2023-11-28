@@ -4,6 +4,10 @@ const createList = async (name) => {
   await sql`INSERT INTO shopping_lists (name) VALUES (${name})`;
 };
 
+const findListCount = async () => {
+  const count = await sql`SELECT COUNT(*)::integer FROM shopping_lists`
+    return count[0].count;
+}
 
 const findCurrentList = async (ListId) => {
   const rows = await sql`SELECT * FROM shopping_lists
@@ -25,4 +29,4 @@ const deactivateList = async (ListId) => {
   await sql`UPDATE shopping_lists SET active = false WHERE id = ${ListId}`;
 }
 
-export { createList, findCurrentList, findAllActiveLists, deactivateList };
+export { createList, findCurrentList, findAllActiveLists, deactivateList, findListCount };

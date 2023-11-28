@@ -21,12 +21,5 @@ const collectListItem = async (request) => {
   return requestUtils.redirectTo(`/lists/${urlParts[2]}`);
 }
 
-/*const viewListItems = async (request) => {
-    const url = new URL(request.url);
-    const urlParts = url.pathname.split("/");
-    await listItemService.findActiveItemsByID(urlParts[2])
-
-    return requestUtils.redirectTo(`/lists/${urlParts[2]}`);
-}*/
 
 export { createListItem, collectListItem };

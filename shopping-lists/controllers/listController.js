@@ -7,7 +7,21 @@ const responseDetails = {
   headers: { "Content-Type": "text/html;charset=UTF-8" },
 };
 
-
+const viewStatistics = async (request) => {
+  
+  const data = {
+    itemCount: await listItemService.findItemCount(),
+    listCount: await listService.findListCount()
+  }
+  
+  if (data.itemCount == 0){
+    data.itemCount = "No items yet"
+  }
+  if (data.listCount == 0){
+    data.listCount = "No Shopping lists yet"
+  }
+  return new Response(await renderFile("mainpage.eta", data), responseDetails);
+};
 
 const addList = async (request) => {
   const url = new URL(request.url);
@@ -41,4 +55,13 @@ const viewLists = async (request) => {
   return new Response(await renderFile("lists.eta", data), responseDetails);
 };
 
-export { addList, viewLists, viewList };
+const deactivateList = async (request) => {
+  const url = new URL(request.url);
+  const urlParts = url.pathname.split("/");
+  
+  await listService.deactivateList(urlParts[2])
+
+  return requestUtils.redirectTo("/lists");
+}
+
+export { addList, viewLists, viewList, viewStatistics, deactivateList };
