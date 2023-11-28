@@ -1,6 +1,12 @@
 <% layout("./layouts/layout.eta") %>
 
 <h1>Shared shopping lists</h1>
+<% if (it.listCount == 0) { %>
+<li>
+ <a> No shopping lists yet. </a>
+ </li>
+<% } 
+else { %>
 <ul>
 <li>
     <a>Shopping lists: <%= it.listCount %></a>
@@ -9,6 +15,6 @@
 <a>Shopping list items: <%= it.itemCount %></a>
 </li>
 </ul>
-
+<% } %>
 
 <a href="/lists">Lists</a>

@@ -14,12 +14,6 @@ const viewStatistics = async (request) => {
     listCount: await listService.findListCount()
   }
   
-  if (data.itemCount == 0){
-    data.itemCount = "No items yet"
-  }
-  if (data.listCount == 0){
-    data.listCount = "No Shopping lists yet"
-  }
   return new Response(await renderFile("mainpage.eta", data), responseDetails);
 };
 
