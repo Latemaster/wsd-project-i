@@ -5,11 +5,11 @@ const createItem = async (name, id) => {
 }
 
 const findActiveItemsByID = async (Listid) => {
-    return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${ Listid } AND collected = false`;
+    return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${ Listid } AND collected = false ORDER BY name ASC`;
 }
 
 const findCollectedItemsByID = async (Listid) => {
-    return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${ Listid } AND collected = true`;
+    return await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${ Listid } AND collected = true ORDER BY name ASC`;
 }
 
 const CollectItem = async (Listid) => {
