@@ -15,7 +15,6 @@ const createListItem = async (request) => {
 const collectListItem = async (request) => {
     const url = new URL(request.url);
   const urlParts = url.pathname.split("/");
-  console.log(urlParts, "collect item")
   await listItemService.CollectItem(urlParts[4]);
 
   return requestUtils.redirectTo(`/lists/${urlParts[2]}`);
